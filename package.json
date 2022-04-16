@@ -1,0 +1,14 @@
+{
+  "name": "rrw-bangle",
+  "version": "1.0.0",
+  "description": "Fun stuff for bangle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "None",
+  "dependencies": {
+    "espruino": "==0.1.40"
+  }
+}
