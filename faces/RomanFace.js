@@ -10,10 +10,16 @@ class RomanFace extends Face {
         const hours = inputDate.getHours();
         const minutes = inputDate.getMinutes();
         const secs = inputDate.getSeconds();
-        var time = ToRoman(hours) + ':' + ToRoman(minutes) + ':' +
-            ToRoman(secs);
+        // Longest is eg. LDVIII
+        var time = RightPad(5, ToRoman(hours),' ') + ':' +
+            RightPad(7, ToRoman(minutes), ' ')
+        var outSecs = 
+            RightPad(7, ToRoman(secs), ' ');
         this.config.clearFace();
-        this.config.drawDigitalTime(time);
+        g.setFont12x20(1);
+        g.drawString(time, this.config.faceAt.x, this.config.faceAt.y);
+        g.drawString(outSecs, this.config.faceAt.x + 40,
+                     this.config.faceAt.y + 20);
     }
 }
 
