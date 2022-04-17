@@ -63,6 +63,13 @@ try {
     }
     outputData += '/////////// End file /////////\n'
     console.log(`Writing ${outFile}...`)
+    // Create directory if it doesn't exist
+    {
+        let dName = path.dirname(outFile);
+        if (!fs.existsSync(dName)) {
+            fs.mkdirSync(dName, { recursive: true })
+        }
+    }
     fs.writeFileSync(outFile, outputData)
     console.log('Done')
 } catch (e) {

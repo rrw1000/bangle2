@@ -10,5 +10,8 @@
   "license": "None",
   "dependencies": {
     "espruino": "==0.1.40"
-  }
+  },
+    "scripts" : {
+        "compile" : "node compile.js build/output.js"
+    }
 }
