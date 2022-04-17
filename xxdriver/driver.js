@@ -8,10 +8,10 @@ for (x in result) {
 console.log("WxH =" + g.getWidth() +"x" + g.getHeight());
 
 let config = new Config();
-face = new UTCFace(config);
+face = new RomanFace(config);
 let nowDate = new Date();
 console.log('initial draw');
 face.draw(nowDate);
 var secondInterval = setInterval(
-    function() { console.log('X'); g.reset(); face.draw(new Date()); }, 1000);
+    function() { g.reset(); face.draw(new Date()); }, 1000);
 

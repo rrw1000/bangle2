@@ -24,10 +24,11 @@ function collectPath(dirName) {
                 toAppend = toAppend.concat(collectPath(fullPath))
             } else if (fullPath.endsWith('.js')) {
                 let addThis = true
-                // Don't add backup files or anything emacs.
-            var thisFile = someFiles[aFile]
+                var thisFile = someFiles[aFile]
+                // Don't add backup files or anything emacs generates.
+                // Don't add .test.js files - they are jest tests.
                 if (thisFile.startsWith('.') || thisFile.includes("~") ||
-                    thisFile.startsWith('#')) {
+                    thisFile.startsWith('#') || thisFile.endsWith('.test.js')) {
                     addThis = false
                 }
                 for (elem in FORBIDDEN) {

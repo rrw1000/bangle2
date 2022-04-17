@@ -4,14 +4,15 @@
   "description": "Fun stuff for bangle",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "node compile.js build/output.js",
+    "test": "jest"
   },
   "author": "",
   "license": "None",
   "dependencies": {
     "espruino": "==0.1.40"
   },
-    "scripts" : {
-        "compile" : "node compile.js build/output.js"
-    }
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
 }

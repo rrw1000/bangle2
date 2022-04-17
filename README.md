@@ -19,6 +19,18 @@ will compile code ready for uploading into `build/output.js` for uploading with 
 
 ## Testing
 
-This is going to be horrid, since the IDE provides no way to run autotests, the program uses the Espruino libraries a lot, and I don't have time to mock the data. Best I can do is to use the `compile.js` script to pull out common code (marked by a filename with `Testable` or `Test` at the end) and run it in node.
+This is rather horrid. We use jest, and rely on it to tactically ignore
+modules we don't test that use Espruino-only APIs. 
 
+We use `typeof` to check for `module` and hope that Espruino will 
+constant-fold these out - if it doesn't, then one day the `compile.js` 
+script may have to remove them itself.
 
+`compile.js` has been taught to exclude `.test.js` files from its
+compiles.
+
+```
+npm run test
+```
+
+will run the tests in the usual way.

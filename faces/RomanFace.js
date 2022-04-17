@@ -8,9 +8,12 @@ class RomanFace extends Face {
 
     draw(inputDate) {
         const hours = inputDate.getHours();
-        const mins = inputDate.getMins();
+        const minutes = inputDate.getMinutes();
         const secs = inputDate.getSeconds();
-
-    
+        var time = ToRoman(hours) + ':' + ToRoman(minutes) + ':' +
+            ToRoman(secs);
+        this.config.clearFace();
+        this.config.drawDigitalTime(time);
     }
-   
+}
+

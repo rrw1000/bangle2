@@ -2,7 +2,7 @@ function LeftPad(nr, elem, pad) {
     return (pad.repeat(nr) + elem).substr(-nr);
 }
 
-function toRoman(number) {
+function ToRoman(number) {
     // Progressively knock us down. We're in base 10, so ..
     factor = 10;
     result = ""
@@ -13,6 +13,11 @@ function toRoman(number) {
         number = number / factor;
         
     }
+    return result;
 }
 
+if (typeof module !== 'undefined') {
+    module.exports.LeftPad = LeftPad;
+    module.exports.ToRoman = ToRoman;
+}
 
