@@ -34,3 +34,9 @@ npm run test
 ```
 
 will run the tests in the usual way.
+
+## The graphics are wrong
+
+I'm currently using the emulator, so not paying too much attention to 
+screen layout... 
+
