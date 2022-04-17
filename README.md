@@ -16,3 +16,9 @@ npm run compile
 ```
 
 will compile code ready for uploading into `build/output.js` for uploading with the Web IDE.
+
+## Testing
+
+This is going to be horrid, since the IDE provides no way to run autotests, the program uses the Espruino libraries a lot, and I don't have time to mock the data. Best I can do is to use the `compile.js` script to pull out common code (marked by a filename with `Testable` or `Test` at the end) and run it in node.
+
+
