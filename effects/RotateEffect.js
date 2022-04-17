@@ -1,4 +1,4 @@
-// Upside down
+// Rotation effect.
 
 class RotateEffect extends Effect {
     // Sadly, default parameters seem not to happen for me.
