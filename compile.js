@@ -6,6 +6,7 @@ const FORBIDDEN = [
     "node_modules/",
     "feature_tests/",
     "compile.js", // Don't output yourself!
+    "jest.config.js", // Or the jest configuration.
     "build/"  // ... or anything in the build directory
 ]
 const myArgs = process.argv.slice(2)

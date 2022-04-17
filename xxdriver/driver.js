@@ -9,9 +9,10 @@ console.log("WxH =" + g.getWidth() +"x" + g.getHeight());
 
 let config = new Config();
 face = new RomanFace(config);
+effect = new RotateEffect(face, 2, false);
 let nowDate = new Date();
 console.log('initial draw');
-face.draw(nowDate);
+effect.draw(nowDate);
 var secondInterval = setInterval(
-    function() { g.reset(); face.draw(new Date()); }, 1000);
+    function() { g.reset(); effect.draw(new Date()); }, 1000);
 
