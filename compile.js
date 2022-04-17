@@ -5,7 +5,8 @@ const path = require("path")
 const FORBIDDEN = [
     "node_modules/",
     "feature_tests/",
-    "compile.js" // Don't output yourself!
+    "compile.js", // Don't output yourself!
+    "build/"  // ... or anything in the build directory
 ]
 const myArgs = process.argv.slice(2)
 if (myArgs.length < 1) {

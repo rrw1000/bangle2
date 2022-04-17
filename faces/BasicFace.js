@@ -3,18 +3,26 @@
 
 class BasicFace extends Face {
     constructor(config) {
-        super(config)
+        // espruino will accept super(..), but doesn't compile it
+        // properly.
+        Face.call(this, config);
+        result = g.getFonts();
+        for (x in result) {
+            console.log(result[x]);
+        }
+        // console.log("WxH =" + g.getWidth() +"x" + g.getHeight());
     }
+    
 
     draw(inputDate) {
         const hours = inputDate.getHours();
         const mins = inputDate.getMinutes();
         const secs = inputDate.getSeconds();
-        var time = hours + ":" + ('0' +mins).substr(-2) + ":" +
-            ('0' + secs).substr(-2)
-        g.reset();
+        var time = LeftPad(2, hours, '0') +  ':' +
+            LeftPad(2, mins, '0') + ':' +
+            LeftPad(2, secs, '0')
         this.config.clearFace()
-        g.drawString(time, this.config.faceAt.x, this.config.faceAt.y);
+        this.config.drawDigitalTime(time)
     }
 }
 
