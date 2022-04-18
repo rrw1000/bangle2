@@ -1,3 +1,23 @@
+function SplitLines(text, nr) {
+    const allWords = text.split(" ");
+    let theLines = [ ]
+    let thisLine = "";
+    for (wordIdx in allWords) {
+        const thisWord = allWords[wordIdx];
+        if ((thisLine.length + thisWord.length) > nr) {
+            if (thisLine.length > 0) { theLines.push(thisLine); }
+            thisLine = thisWord;
+        } else {
+            if (thisLine.length > 0) { thisLine = thisLine + " "; }
+            thisLine = thisLine + thisWord;
+        }
+    }
+    if (thisLine.length > 0) {
+        theLines.push(thisLine);
+    }
+    return theLines;
+}
+
 function RightPad(nr, elem, pad) {
     let elemStr = "" + elem;
     let toPad = nr-elemStr.length;
@@ -55,9 +75,11 @@ function ToRoman(number) {
     return result;
 }
 
+
 if (typeof module !== 'undefined') {
     module.exports.LeftPad = LeftPad;
     module.exports.RightPad = RightPad;
     module.exports.ToRoman = ToRoman;
+    module.exports.SplitLines = SplitLines;
 }
 
