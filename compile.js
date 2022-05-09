@@ -45,12 +45,14 @@ function collectPath(dirName) {
         } catch (e) {
             // Probably statSync failed because emacs generates
             // unstat()able files, apparently. Hey ho. Skip.
-            console.log(`Warning ${fullPath} is not stat'able - ${e}`)
+            if (!someFiles[aFile].startsWith('.')) {
+                console.log(`Warning ${fullPath} is not stat'able - ${e}`)
+            }
         }
     }
     return toAppend
 }
-    
+
 
 
 try {
@@ -58,6 +60,8 @@ try {
     const toAppend = collectPath(".")
     console.log('Catenating files')
     let outputData = ""
+    outputData += '/////////// Constants //////////\n'
+    
     outputData += '/////////// Start file /////////\n'
     for (appendIdx in toAppend) {
         const fullPath = toAppend[appendIdx]

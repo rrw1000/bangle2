@@ -12,12 +12,12 @@ console.log("WxH =" + g.getWidth() +"x" + g.getHeight());
 let config = new Config();
 global.config = config;
 global.face = new RomanFace(global.config);
-global.effect = new RotateEffect(global.face, 2, false);
+global.effect = new RotateEffect(global.face, 0, false);
 let nowDate = new Date();
 console.log('initial draw');
 global.effect.draw(nowDate);
 var secondInterval = setInterval(
-    function() { g.reset(); global.effect.draw(new Date()); }, 1000);
+    function() { g.reset(); global.effect.draw(new Date()); }, 500);
 setWatch(() => {
     global.face = new BasicFace(global.config);
     global.effect = new RotateEffect(global.face, 3, false);
