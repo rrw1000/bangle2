@@ -1,9 +1,11 @@
 // Compile js files
 
+const autogen = require('./static/autogen.js')
 const fs = require("fs")
 const path = require("path")
 const FORBIDDEN = [
     "node_modules/",
+    "static/",
     "feature_tests/",
     "compile.js", // Don't output yourself!
     "jest.config.js", // Or the jest configuration.
@@ -54,6 +56,17 @@ function collectPath(dirName) {
 }
 
 
+function GenRomans() {
+    var output = "const COMPILER_ROMANS = ["
+    for (let i = 1; i< 60; ++i) {
+        output += "\"" + autogen.ToRoman(i) + "\""
+        if (i < 59) {
+            output += ","
+        }
+    }
+    output += "]"
+    return output
+}
 
 try {
     console.log('Collecting filenames')
@@ -61,7 +74,8 @@ try {
     console.log('Catenating files')
     let outputData = ""
     outputData += '/////////// Constants //////////\n'
-    
+    outputData += GenRomans()
+    outputData += "\n"
     outputData += '/////////// Start file /////////\n'
     for (appendIdx in toAppend) {
         const fullPath = toAppend[appendIdx]
