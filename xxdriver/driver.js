@@ -4,10 +4,7 @@ var global = new Global();
 
 g.clear()
 result = g.getFonts();
-for (x in result) {
-    console.log(result[x]);
-}
-console.log("WxH =" + g.getWidth() +"x" + g.getHeight());
+console.log("V1");
 
 let config = new Config();
 global.config = config;
@@ -24,4 +21,5 @@ setWatch(() => {
     setTimeout(() => global.effect = new RotateEffect(global.face, 0, false),
                1000);
 }, BTN1);
+global.config.drawStatus("Hello!");
 

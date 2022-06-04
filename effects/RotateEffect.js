@@ -13,6 +13,3 @@ class RotateEffect extends Effect {
         this.faceObject.draw(currentDate);
     }
 }
-
-                      
-    

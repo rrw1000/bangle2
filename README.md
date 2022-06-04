@@ -9,6 +9,11 @@ It'll get better when (if?) I finish it and make it a proper app..
 I'd really like to use typescript here, but I'm scared that if I let
 the ts compiler at it, I'll blow my code size limits.
 
+## Web Bluetooth on Linux
+
+To enable web bluetooth on Linux you need to enable some experimental stuff in chrome - instructions are here:
+https://www.espruino.com/Quick+Start+BLE#puckjs . This worked for me out of the box on Ubuntu 20.04 / Chrome 102.0.5005.61 .
+
 ## Using
 
 ```

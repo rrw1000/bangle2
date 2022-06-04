@@ -13,10 +13,10 @@ class RomanFace extends Face {
         // Longest is eg. LDVIII
         var time = RightPad(5, ToRoman(hours),' ') + ':' +
             RightPad(7, ToRoman(minutes), ' ')
-        var outSecs = 
+        var outSecs =
             RightPad(7, ToRoman(secs), ' ');
         this.config.clearFace();
-        g.setFont12x20(1);
+        g.setFontVector(20);
         g.drawString(time, this.config.faceAt.x, this.config.faceAt.y);
         g.drawString(outSecs, this.config.faceAt.x + 40,
                      this.config.faceAt.y + 20);

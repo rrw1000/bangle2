@@ -57,14 +57,15 @@ function collectPath(dirName) {
 
 
 function GenRomans() {
-    var output = "const COMPILER_ROMANS = ["
-    for (let i = 1; i< 60; ++i) {
+    var output = "const COMPILER_ROMANS = [ \"0\","
+    // Emit 60, because we sometimes get there momentarily.
+    for (let i = 1; i< 61; ++i) {
         output += "\"" + autogen.ToRoman(i) + "\""
-        if (i < 59) {
+        if (i < 60) {
             output += ","
         }
     }
-    output += "]"
+    output += "];"
     return output
 }
 
