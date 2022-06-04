@@ -4,14 +4,14 @@
   "description": "Fun stuff for bangle",
   "main": "index.js",
   "scripts": {
-      "compile": "node compile.js build/output.js",
-      "minify" : "minify build/output.js > build/min.js",
+    "compile": "node compile.js build/output.js",
+    "minify": "minify build/output.js > build/min.js",
     "test": "jest"
   },
   "author": "",
   "license": "None",
   "dependencies": {
-    "espruino": "==0.1.40",
+    "espruino": "^0.0.17",
     "minify": "^8.0.4"
   },
   "devDependencies": {
