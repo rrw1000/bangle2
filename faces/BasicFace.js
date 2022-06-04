@@ -20,7 +20,7 @@ class BasicFace extends Face {
         var time = LeftPad(2, hours, '0') +  ':' +
             LeftPad(2, mins, '0') + ':' +
             LeftPad(2, secs, '0')
-        this.config.clearFace()
+        this.config.clearFace();
         this.config.drawDigitalTime(time)
     }
 }

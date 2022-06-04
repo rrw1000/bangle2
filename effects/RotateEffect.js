@@ -11,5 +11,6 @@ class RotateEffect extends Effect {
     draw(currentDate) {
         g.setRotation(this.rotateBy, this.doReflect);
         this.faceObject.draw(currentDate);
+        g.setRotation(0, false);
     }
 }

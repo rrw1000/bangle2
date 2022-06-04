@@ -40,5 +40,3 @@ test('SplitLines basically works (2)',() => {
            toEqual(['the', 'whirligig']);
 });
 
-
-    
