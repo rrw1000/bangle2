@@ -7,10 +7,12 @@ class Config {
         this.statusAt = new Rect(new Point(0,20), new Point(176, 40));
         // Face rectangle
         this.faceRect = new Rect(new Point(0,60), new Point(176,120));
+        // Battery line
+        this.statsAt = new Rect(new Point(0,150), new Point(176,176));
         // Screen
         this.screenRect = new Rect(new Point(0,0), new Point(176,176));
         // Size for "large" clock faces
-        this.largeVectorSize = 28;
+        this.largeVectorSize = 30;
     }
 
     setLargeFont() {
@@ -24,7 +26,7 @@ class Config {
     // Draw a digital time display (HH:MM:SS or so)
     drawDigitalTime(aString) {
         this.setLargeFont();
-        g.drawString(aString, this.faceAt.x, this.faceAt.y);
+        this.drawStringCentered(aString, this.faceAt.y);
     }
 
     // Draw a text description above the face
@@ -45,6 +47,12 @@ class Config {
         g.clearRect(this.statusAt.tl.x, this.statusAt.tl.y,
                     this.statusAt.br.x, this.statusAt.br.y);
         this.drawStringCentered(aString, this.statusAt.tl.y);
+    }
+
+    drawStats(aString) {
+        g.clearRect(this.statsAt.tl.x, this.statsAt.tl.y,
+                    this.statsAt.br.x, this.statsAt.br.y);
+        this.drawStringCentered(aString, this.statsAt.tl.y);
     }
 
     // Clear the whole display

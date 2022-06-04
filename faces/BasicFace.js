@@ -12,7 +12,6 @@ class BasicFace extends Face {
         }
         // console.log("WxH =" + g.getWidth() +"x" + g.getHeight());
     }
-    
 
     draw(inputDate) {
         const hours = inputDate.getHours();
