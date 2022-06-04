@@ -17,9 +17,9 @@ class RomanFace extends Face {
             RightPad(7, ToRoman(secs), ' ');
         this.config.clearFace();
         g.setFontVector(20);
-        g.drawString(time, this.config.faceAt.x, this.config.faceAt.y);
+        g.drawString(time, this.config.faceAt.x, this.config.faceAt.y + this.config.faceVBorder);
         g.drawString(outSecs, this.config.faceAt.x + 40,
-                     this.config.faceAt.y + 20);
+                     this.config.faceAt.y + 20 + this.config.faceVBorder);
     }
 }
 

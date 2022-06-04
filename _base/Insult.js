@@ -8,22 +8,33 @@ function Insult(code) {
         [ "herring", -1, "albatross", -1, "gerbil", -1, "fruit pie", -1,
           "hummingbird", -1, "sealion", -1, "archaean", -1 ],
         // 2
-        [ "you are a", 0 ],       
+        [ "you", 0 ],
     ]
     const ARRAY_START = 2;
     const ARRAY_MAX_LEN = 32;
     let currentArrayIndex = ARRAY_START;
+    let outArray = [ ]
     let result = ""
+    if (code < 0) {
+        code = -code;
+    }
     while (currentArrayIndex != -1) {
         const currentArray =  ARRAYS[currentArrayIndex];
         const valFromArray = Math.floor(code % (currentArray.length/2));
         code = Math.floor(code / ARRAY_MAX_LEN);
         const idxInArray = valFromArray << 1;
+        if ((result.length + currentArray[idxInArray].length) > 15) {
+            outArray.push(result);
+            result = "";
+        }
         if (result.length > 0) { result = result + " "; }
         result = result + currentArray[idxInArray];
         currentArrayIndex = currentArray[idxInArray + 1];
     }
-    return result;
+    if (result.length > 0) {
+        outArray.push(result)
+    }
+    return outArray;
 }
 
 if (typeof module !== 'undefined') {

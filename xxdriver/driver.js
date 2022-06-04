@@ -11,9 +11,15 @@ function renderStats() {
     global.stats.draw();
 }
 
+function clearDisplay() {
+    global.config.clearDisplay();
+    renderStats();
+}
+
 function randomise() {
     global.face = new RomanFace(global.config);
     global.effect = new RotateEffect(global.face, 0, false);
+    global.config.drawStatus(global.config.defaultStatusText);
 }
 
 let config = new Config();
@@ -23,18 +29,21 @@ global.face = new RomanFace(global.config);
 global.effect = new RotateEffect(global.face, 0, false);
 let nowDate = new Date();
 console.log('initial draw');
-global.effect.draw(nowDate);
+randomise();
+renderStats();
+
 var secondInterval = setInterval(
     function() { g.reset(); global.effect.draw(new Date()); }, 500);
 Bangle.on('tap',
           function(data) {
               if (data.double) {
-                  console.log("Still down!");
+                  clearDisplay();
+                  global.config.drawStatus(Insult(E.hwRand()));
                   global.face = new BasicFace(global.config);
                   global.effect = new RotateEffect(global.face, 0, false);
                   global.isOverridden = true;
                   setTimeout(function() {
-                      console.log("Back to encrypted");
+                      clearDisplay();
                       global.isOverridden = false;
                       randomise();
                   }, 5000)
@@ -42,10 +51,8 @@ Bangle.on('tap',
           }
          );
 var faceChangeInterval = setInterval(
-    function() { console.log("Random"); if (!global.isOverridden) { randomise(); }  } ,
+    function() { if (!global.isOverridden) { randomise(); }  } ,
     5000);
-renderStats();
 var statsChangeInterval = setInterval(
     function() { renderStats(); }, 10000 );
-global.config.drawStatus("Hello!");
 

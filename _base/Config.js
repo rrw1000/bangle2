@@ -4,15 +4,23 @@ class Config {
         // Where do we draw the watch face?
         this.faceAt = new Point(20,70);
         // How about the status line?
-        this.statusAt = new Rect(new Point(0,20), new Point(176, 40));
+        this.statusAt = new Rect(new Point(0,20), new Point(176, 60));
         // Face rectangle
-        this.faceRect = new Rect(new Point(0,60), new Point(176,120));
+        this.faceRect = new Rect(new Point(0,80), new Point(176,120));
         // Battery line
         this.statsAt = new Rect(new Point(0,150), new Point(176,176));
         // Screen
         this.screenRect = new Rect(new Point(0,0), new Point(176,176));
         // Size for "large" clock faces
         this.largeVectorSize = 30;
+        // What we should have as a default status
+        this.defaultStatusText = [ "Try this .. ", "" ]
+        // Split status at
+        this.splitStatusAtPixels = 160
+        // Small font Y spacing
+        this.smallFontYSpacing = 20
+        // V border for face
+        this.faceVBorder = 5
     }
 
     setLargeFont() {
@@ -26,7 +34,7 @@ class Config {
     // Draw a digital time display (HH:MM:SS or so)
     drawDigitalTime(aString) {
         this.setLargeFont();
-        this.drawStringCentered(aString, this.faceAt.y);
+        this.drawStringCentered(aString, this.faceAt.y + this.faceVBorder);
     }
 
     // Draw a text description above the face
@@ -42,14 +50,21 @@ class Config {
         g.drawString(aString, textAt, atY);
     }
 
-    // Draw a status line
-    drawStatus(aString) {
+    // Draw two status lines
+    drawStatus(lines) {
+        this.setSmallFont();
         g.clearRect(this.statusAt.tl.x, this.statusAt.tl.y,
                     this.statusAt.br.x, this.statusAt.br.y);
-        this.drawStringCentered(aString, this.statusAt.tl.y);
+        if (lines.length > 0) {
+            this.drawStringCentered(lines[0], this.statusAt.tl.y);
+        }
+        if (lines.length > 1) {
+            this.drawStringCentered(lines[1], this.statusAt.tl.y + this.smallFontYSpacing);
+        }
     }
 
     drawStats(aString) {
+        this.setSmallFont();
         g.clearRect(this.statsAt.tl.x, this.statsAt.tl.y,
                     this.statsAt.br.x, this.statsAt.br.y);
         this.drawStringCentered(aString, this.statsAt.tl.y);
