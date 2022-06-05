@@ -1,14 +1,14 @@
 // Compiled after everything else - driver.
+// I really want to make this an object, but bangles are small and keeping this
+// global is easy ...
 
 EMULATE_RANDOMNESS = true
 
 var global = new Global();
 
-
 // Just in case ..
 g.setRotation(0, false);
 g.clear()
-result = g.getFonts();
 gEmulatedRandomNumber = 0;
 console.log("V2");
 

@@ -30,7 +30,6 @@ class UTCFace extends Face {
         var secondaryDate = new Date()
         secondaryDate.setTime(
             inputDate.getTime() + this.utcOffset*MILLISECS_PER_HOUR);
-        console.log(secondaryDate);
         this.basicFace.draw(secondaryDate);
     }
 

@@ -78,7 +78,9 @@ class Config {
 
     // Clear the area reserved for the watch face.
     clearFace() {
-        g.clearRect(this.faceRect.tl.x, this.faceRect.tl.y,
+        // Clear a bit above where we want to clear, otherwise we seem to get
+        // artefacts.
+        g.clearRect(this.faceRect.tl.x, this.faceRect.tl.y-this.faceVBorder,
                     this.faceRect.br.x, this.faceRect.br.y);
     }
 }
