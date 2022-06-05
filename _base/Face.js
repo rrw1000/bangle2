@@ -6,5 +6,9 @@ class Face {
     draw(inputDate) {
         // Override this to draw your face once a second
     }
+
+    drawStatus() {
+        // Override this to draw your status line
+    }
 }
 

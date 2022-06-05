@@ -1,5 +1,7 @@
 // Compiled after everything else - driver.
 
+EMULATE_RANDOMNESS = true
+
 var global = new Global();
 
 
@@ -7,7 +9,8 @@ var global = new Global();
 g.setRotation(0, false);
 g.clear()
 result = g.getFonts();
-console.log("V1");
+gEmulatedRandomNumber = 0;
+console.log("V2");
 
 
 function renderStats() {
@@ -21,13 +24,29 @@ function clearDisplay() {
 }
 
 function randomise() {
-    let randomNumber = E.hwRand();
+    var randomNumber;
+    if (EMULATE_RANDOMNESS) {
+        gEmulatedRandomNumber += 1;
+        randomNumber = gEmulatedRandomNumber;
+    } else {
+        randomNumber = E.hwRand();
+    }
     // Make it +ve to avoid nasty issues with operators applied to -ve
     // numbers.
     if (randomNumber < 0) {
         randomNumber = -randomNumber;
     }
-    global.face = new RomanFace(global.config);
+    // What face do we want?
+    const faceSelector = (randomNumber%2);
+    // Take 2 bits
+    randomNumber = randomNumber >> 2;
+    if (faceSelector == 0) {
+        global.face = new RomanFace(global.config);
+    } else if (faceSelector == 1) {
+        global.face = new UTCFace(global.config, randomNumber%22);
+        // Used another 5 bits
+        randomNumber = randomNumber >> 5;
+    }
     let newlyRotated = false;
     if (randomNumber%2 == 1) {
         newlyRotated = true;
@@ -40,7 +59,7 @@ function randomise() {
         clearDisplay();
         global.rotated = newlyRotated;
     }
-    global.config.drawStatus(global.config.defaultStatusText);
+    global.face.drawStatus();
 }
 
 

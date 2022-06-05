@@ -21,5 +21,9 @@ class RomanFace extends Face {
         g.drawString(outSecs, this.config.faceAt.x + 40,
                      this.config.faceAt.y + 20 + this.config.faceVBorder);
     }
+
+    drawStatus() {
+        this.config.drawStatus(["Try this .. "])
+    }
 }
 

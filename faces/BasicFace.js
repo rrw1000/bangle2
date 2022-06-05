@@ -23,5 +23,10 @@ class BasicFace extends Face {
         this.config.clearFace();
         this.config.drawDigitalTime(time)
     }
+
+    drawStatus() {
+        // Nothing - important 'cos not drawing a status
+        // means that we leave the insult on screen.
+    }
 }
 
