@@ -6,7 +6,7 @@ class Config {
         // How about the status line?
         this.statusAt = new Rect(new Point(0,20), new Point(176, 60));
         // Face rectangle
-        this.faceRect = new Rect(new Point(0,80), new Point(176,120));
+        this.faceRect = new Rect(new Point(0,70), new Point(176,120));
         // Battery line
         this.statsAt = new Rect(new Point(0,150), new Point(176,176));
         // Screen

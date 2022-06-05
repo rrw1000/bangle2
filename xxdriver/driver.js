@@ -3,6 +3,7 @@
 // global is easy ...
 
 EMULATE_RANDOMNESS = true
+FIXED_FACE = false
 
 var global = new Global();
 
@@ -25,6 +26,12 @@ function clearDisplay() {
 
 function randomise() {
     var randomNumber;
+    if (FIXED_FACE) {
+        global.face = new BinaryFace(global.config);
+        global.effect = new RotateEffect(global.face, 0, false);
+        global.face.drawStatus();
+        return;
+    }
     if (EMULATE_RANDOMNESS) {
         gEmulatedRandomNumber += 1;
         randomNumber = gEmulatedRandomNumber;
@@ -37,7 +44,7 @@ function randomise() {
         randomNumber = -randomNumber;
     }
     // What face do we want?
-    const faceSelector = (randomNumber%2);
+    const faceSelector = (randomNumber%3);
     // Take 2 bits
     randomNumber = randomNumber >> 2;
     if (faceSelector == 0) {
@@ -46,6 +53,8 @@ function randomise() {
         global.face = new UTCFace(global.config, randomNumber%22);
         // Used another 5 bits
         randomNumber = randomNumber >> 5;
+    } else if (faceSelector == 2) {
+        global.face = new BinaryFace(global.config);
     }
     let newlyRotated = false;
     if (randomNumber%2 == 1) {
