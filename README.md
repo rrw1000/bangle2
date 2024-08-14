@@ -25,7 +25,7 @@ will compile code ready for uploading into `build/output.js` for uploading with 
 ## Testing
 
 This is rather horrid. We use jest, and rely on it to tactically ignore
-modules we don't test that use Espruino-only APIs. 
+modules we don't test that use Espruino-only APIs.
 
 We use `typeof` to check for `module` and hope that Espruino will 
 constant-fold these out - if it doesn't, then one day the `compile.js` 
@@ -44,4 +44,19 @@ will run the tests in the usual way.
 
 I'm currently using the emulator, so not paying too much attention to 
 screen layout... 
+
+## Connecting via the command line on OS X
+
+I can do this (no guarantees you can!) via the `espruino` command line tool:
+
+```sh
+$ npm i -g espruino
+$ echo Now turn bluetooth off and back on again in case someone else has the device locked.
+$ espruino --list 
+$ echo You should now have a list including "Bangle"
+$ espruino -d Bangle
+```
+
+Do not attempt to use the `-p` option - it doesn't work on my machine for some reason. The machine will pick up the first bluetooth device it sees after you turn bluetooth on, so if you are using a dongle, turn bt off, insert dongle, turn bt on and we should be using it.
+
 

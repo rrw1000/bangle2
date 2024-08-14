@@ -11,10 +11,10 @@
   "author": "",
   "license": "None",
   "dependencies": {
-    "espruino": "^0.0.17",
-    "minify": "^8.0.4"
+    "espruino": "^0.1.55",
+    "minify": "^11.4.0"
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^29.7.0"
   }
 }
