@@ -2,8 +2,25 @@
 // I really want to make this an object, but bangles are small and keeping this
 // global is easy ...
 
-EMULATE_RANDOMNESS = true
-FIXED_FACE = false
+
+// One day there should be a production build type ..
+gPRODUCTION_BUILD = true;
+if (gPRODUCTION_BUILD) {
+  EMULATE_RANDOMNESS = false
+  FIXED_FACE = false
+  // When should the face change?
+  FACE_CHANGE_MS = 120000;
+  // When do we resample battery %, etc?
+  STATS_CHANGE_MS = 20000;
+  // How long do insults last for?
+  INSULT_INTERVAL_MS = 10000;
+} else {
+  EMULATE_RANDOMNESS = true
+  FIXED_FACE = false
+  FACE_CHANGE_MS = 5000;
+  STATES_CHANGE_MS = 10000;
+  INSULT_INTERVAL_MS = 5000;
+}
 
 var global = new Global();
 
@@ -97,13 +114,15 @@ Bangle.on('tap',
                       clearDisplay();
                       global.isOverridden = false;
                       randomise();
-                  }, 5000)
+                  }, 10000 /* INSULT_INTERVAL_MS */ )
               }
           }
          );
+// FACE_CHANGE_MS
 var faceChangeInterval = setInterval(
     function() { if (!global.isOverridden) { randomise(); }  } ,
-    5000);
+  120000);
+// STATS_CHANGE_MS
 var statsChangeInterval = setInterval(
-    function() { renderStats(); }, 10000 );
+    function() { renderStats(); }, 20000 );
 

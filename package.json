@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "compile": "node compile.js build/output.js",
-    "minify": "minify build/output.js > build/min.js",
+    "minify": "minify build/output.js > build/watchme.js",
+    "run": "node run.js",
+    "upload": "node upload.js",
     "test": "jest"
   },
   "author": "",

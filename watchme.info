@@ -1,0 +1,7 @@
+{
+ "id": "WatchMe",
+ "name": "rrw's harder clock",
+ "src": "watchme.js",
+ "icon": "watchme.img",
+ "files": "watchme.js,watchme.img"
+}

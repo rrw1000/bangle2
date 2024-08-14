@@ -1,0 +1,6 @@
+{
+  "js": {
+    "removeConsole": true,
+    "type": "putout"
+  }
+}

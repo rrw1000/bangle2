@@ -59,4 +59,7 @@ $ espruino -d Bangle
 
 Do not attempt to use the `-p` option - it doesn't work on my machine for some reason. The machine will pick up the first bluetooth device it sees after you turn bluetooth on, so if you are using a dongle, turn bt off, insert dongle, turn bt on and we should be using it.
 
+## Icons
+
+This was generated with <a target="_blank" href="https://icons8.com/icon/A3c04Fnghx1E/watch">Watch</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> , and converted per https://www.espruino.com/Bangle.js+First+App.
 

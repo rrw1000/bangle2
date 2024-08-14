@@ -4,12 +4,14 @@ const autogen = require('./static/autogen.js')
 const fs = require("fs")
 const path = require("path")
 const FORBIDDEN = [
-    "node_modules/",
-    "static/",
-    "feature_tests/",
-    "compile.js", // Don't output yourself!
-    "jest.config.js", // Or the jest configuration.
-    "build/"  // ... or anything in the build directory
+  "node_modules/",
+  "static/",
+  "feature_tests/",
+  "compile.js", // Don't output yourself!
+  "run.js", // or the run script!
+  "upload.js", // or the upload script
+  "jest.config.js", // Or the jest configuration.
+  "build/"  // ... or anything in the build directory
 ]
 const myArgs = process.argv.slice(2)
 if (myArgs.length < 1) {
