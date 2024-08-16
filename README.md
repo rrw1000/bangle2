@@ -63,4 +63,8 @@ Do not attempt to use the `-p` option - it doesn't work on my machine for some r
 
 This was generated with <a target="_blank" href="https://icons8.com/icon/A3c04Fnghx1E/watch">Watch</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> , and converted per https://www.espruino.com/Bangle.js+First+App. The magic setting is "Optimal 4 bit" or your icon won't show up.
 
+## TODO
 
+ * Need a way to enter the launcher from the app
+ * We get very confused with timers - lock out our screen timers from each other or when you press the button we end up having multiple (annoying!) transitions.
+ 
