@@ -3,25 +3,6 @@
 // global is easy ...
 
 
-// One day there should be a production build type ..
-gPRODUCTION_BUILD = true;
-if (gPRODUCTION_BUILD) {
-  EMULATE_RANDOMNESS = false
-  FIXED_FACE = false
-  // When should the face change?
-  FACE_CHANGE_MS = 120000;
-  // When do we resample battery %, etc?
-  STATS_CHANGE_MS = 20000;
-  // How long do insults last for?
-  INSULT_INTERVAL_MS = 10000;
-} else {
-  EMULATE_RANDOMNESS = true
-  FIXED_FACE = false
-  FACE_CHANGE_MS = 5000;
-  STATES_CHANGE_MS = 10000;
-  INSULT_INTERVAL_MS = 5000;
-}
-
 var global = new Global();
 
 // Just in case ..
@@ -43,13 +24,13 @@ function clearDisplay() {
 
 function randomise() {
     var randomNumber;
-    if (FIXED_FACE) {
+    if (@@@FIXED_FACE@@@) {
         global.face = new BinaryFace(global.config);
         global.effect = new RotateEffect(global.face, 0, false);
         global.face.drawStatus();
         return;
     }
-    if (EMULATE_RANDOMNESS) {
+    if (@@@EMULATE_RANDOMNESS@@@) {
         gEmulatedRandomNumber += 1;
         randomNumber = gEmulatedRandomNumber;
     } else {
@@ -104,7 +85,7 @@ var secondInterval = setInterval(
     function() { g.reset(); global.effect.draw(new Date()); }, 500);
 Bangle.on('tap',
           function(data) {
-              if (data.double) {
+              if (data.double && !global.isOverridden) {
                   clearDisplay();
                   global.config.drawStatus(Insult(E.hwRand()));
                   global.face = new BasicFace(global.config);
@@ -114,15 +95,14 @@ Bangle.on('tap',
                       clearDisplay();
                       global.isOverridden = false;
                       randomise();
-                  }, 10000 /* INSULT_INTERVAL_MS */ )
+                  }, @@@INSULT_INTERVAL_MS@@@ )
               }
           }
          );
-// FACE_CHANGE_MS
 var faceChangeInterval = setInterval(
     function() { if (!global.isOverridden) { randomise(); }  } ,
-  120000);
-// STATS_CHANGE_MS
+  @@@FACE_CHANGE_MS@@@);
+
 var statsChangeInterval = setInterval(
-    function() { renderStats(); }, 20000 );
+    function() { renderStats(); }, @@@STATS_CHANGE_MS@@@);
 

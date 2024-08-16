@@ -4,7 +4,8 @@
   "description": "Fun stuff for bangle",
   "main": "index.js",
   "scripts": {
-    "compile": "node compile.js build/output.js",
+    "compile": "node compile.js production build/output.js",
+    "dbgcompile": "node compile.js debug build/output.js",
     "minify": "minify build/output.js > build/watchme.js",
     "run": "node run.js",
     "upload": "node upload.js",

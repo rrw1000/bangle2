@@ -3,5 +3,7 @@
  "name": "rrw's harder clock",
  "src": "watchme.js",
  "icon": "watchme.img",
- "files": "watchme.js,watchme.img"
+ "files": "watchme.js,watchme.img",
+ "type": "clock",
+ "sortorder": "-5"
 }

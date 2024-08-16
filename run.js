@@ -18,7 +18,7 @@ async function runOrDie(thing_to_run) {
 }
 
 async function doRun() {
-  await runOrDie("npm run compile");
+  await runOrDie("npm run dbgcompile");
   await runOrDie("npm run minify");
   await runOrDie("espruino -d bangle build/watchme.js")
 }

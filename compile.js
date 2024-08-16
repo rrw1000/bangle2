@@ -14,10 +14,38 @@ const FORBIDDEN = [
   "build/"  // ... or anything in the build directory
 ]
 const myArgs = process.argv.slice(2)
-if (myArgs.length < 1) {
-    throw Error("Please provide an output filename")
+if (myArgs.length < 2) {
+    throw Error("Syntax: compile.js [debug|release] [output filename]")
 }
-const outFile = myArgs[0]
+const buildType = myArgs[0]
+let substParams = { }
+if (buildType == "debug") {
+  console.log("debug build .. ");
+  substParams["EMULATE_RANDOMNESS"] = "true";
+  substParams["FIXED_FACE"] = "false";
+  substParams["FACE_CHANGE_MS"] = "5000";
+  substParams["STATS_CHANGE_MS"] = "10000";
+  substParams["INSULT_INTERVAL_MS"] = "5000";
+} else {
+  console.log("production build .. ");
+  substParams["EMULATE_RANDOMNESS"] = "false";
+  substParams["FIXED_FACE"] = "false";
+  substParams["FACE_CHANGE_MS"] = "120000";
+  substParams["STATS_CHANGE_MS"] = "20000";
+  substParams["INSULT_INTERVAL_MS"] = "10000";
+}
+const outFile = myArgs[1]
+
+// Substitute substParams into dataToProcess
+function processContents(substParams, dataToProcess) {
+  const variableRegex = /@@@([^@]*)@@@/g;
+  return dataToProcess.toString().replaceAll(variableRegex,
+                                             (match, p) => {
+                                               console.log(`Substituting  ${p}`);
+                                               return `${substParams[p]} /* ${p} */`;
+                                             });
+}
+
 function collectPath(dirName) {
     var toAppend = [ ]
     const someFiles = fs.readdirSync(dirName)
@@ -79,12 +107,14 @@ try {
     outputData += '/////////// Constants //////////\n'
     outputData += GenRomans()
     outputData += "\n"
-    outputData += '/////////// Start file /////////\n'
-    for (appendIdx in toAppend) {
-        const fullPath = toAppend[appendIdx]
-        const contents = fs.readFileSync(fullPath)
-        outputData += contents
-    }
+  outputData += '/////////// Start file /////////\n'
+  for (appendIdx in toAppend) {
+    const fullPath = toAppend[appendIdx]
+    outputData += `////// Including ${fullPath}\n`;
+    const contents = fs.readFileSync(fullPath)
+    const processedContents = processContents(substParams,contents);
+    outputData += processedContents
+  }
     outputData += '/////////// End file /////////\n'
     console.log(`Writing ${outFile}...`)
     // Create directory if it doesn't exist
